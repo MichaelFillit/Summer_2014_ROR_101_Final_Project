@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<br/>
+<% @dashboard.errors.full_messages.each do |error| %>
+<%= error %>
+<% end %>
+
+<%= render "partials/dashboardlink" %>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+			<th style="border: 1px solid black; text-align: center; width: 250px;">Dashboard Title</th>
+			<th style="border: 1px solid black; text-align: center; width: 300px;">Dashboard Starting Balance</th>
+			<th style="border: none;"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="text-align: center;">
+			<td style="border: 1px solid black;"><%= @dashboard.title %></td>
+			<td style="border: 1px solid black;">&#36;<%= @dashboard.balance %></td>
+			</tr>
+		</tbody>
+	</table>
+
+<%= form_for [@user, @dashboard] do |f| %>
+
+ <%=f.label :title %>
+ <%=f.text_field :title %>
+ <%=f.label :Account_Balance %>
+ <%=f.text_field :balance %>
+
+ <%=f.submit :"Submit Edit" %>
+<% end %>

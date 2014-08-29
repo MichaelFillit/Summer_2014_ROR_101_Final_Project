@@ -1,0 +1,15 @@
+<br/>
+<br/>
+<%= link_to "Go To Login Page", log_in_form_path, method: :get %>
+<br/>
+<br/>
+<h1>Sign Up</h1>
+<%=form_for @user do |f| %>
+<%=f.label :email %>
+<%=f.text_field :email %>
+<%=f.label :password %>
+<%=f.password_field :password %>
+<%=f.label :password_confirmation %>
+<%=f.password_field :password_confirmation %>
+<%=f.submit "Sign Up" %>
+<%end%>

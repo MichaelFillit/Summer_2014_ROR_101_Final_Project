@@ -1,0 +1,22 @@
+<br/>
+<% @dashboard.errors.full_messages.each do |error| %>
+<%= error %>
+<br/>
+<% end %>
+
+<br/>
+	<br/>
+	 <%= link_to "Show Dashboards", user_dashboards_path(@user.id), method: :get %>
+	<br/>
+	<br/>
+
+<%= form_for [@user, @dashboard] do |f| %>
+
+ <%=f.label :Title %>
+ <%=f.text_field :title %>	
+ <%=f.label :Account_Balance %>
+ <%=f.text_field :balance %>
+
+ <%=f.submit :create %>
+ 
+<% end %>

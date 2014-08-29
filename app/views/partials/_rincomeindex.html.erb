@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+  </script>
+<br/>
+<%= link_to "Create A Real Income Entry", new_user_dashboard_rincome_path(@user, @dashboard), method: :get %>
+<br/>
+<br/>
+<hr>
+<table>
+	<thead>
+		<tr>
+		<th style="border: 1px solid black; padding: 5px; text-align: center; width: 275px;">Real Income Entry Date</th>
+		<th style="border: 1px solid black; vertical-align: text-top; text-align: center; padding: 5px; width: 350px;">Real Income Entry Title</th>
+		<th style="border: 1px solid black; padding: 5px; width: 300px; text-align: center;">Real Income Entry Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @dashboard.rincomes_not_zero.each do |rIncome| %>
+			<% if rIncome.date >= @dashboard.df && rIncome.date <= @dashboard.dt %>
+				<tr style="text-align: center; background-color:grey; padding: 5px">
+				<td style="border: 1px solid black; padding: 5px"><%= rIncome.date.strftime("%a, %B %d, %Y") %></td>
+				<td style="border: 1px solid black; word-wrap:break-word; padding: 5px"><%= rIncome.title %></td>
+			 	<td style="border: 1px solid black; padding: 5px">&#36;<%= rIncome.rincome %></td>
+			 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 275px;"><%= link_to "Edit Real Income Entry", edit_user_dashboard_rincome_path(@user, @dashboard, rIncome), method: :get %></td>
+			 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 300px;"><%= link_to "Delete Real Income Entry", user_dashboard_rincome_path(@user, @dashboard, rIncome), method: :delete %></td>
+				</tr>
+			<% else %>
+			<tr style="text-align: center;">
+				<td style="border: 1px solid black; padding: 5px"><%= rIncome.date.strftime("%a, %B %d, %Y") %></td>
+				<td style="border: 1px solid black; word-wrap:break-word; padding: 5px"><%= rIncome.title %></td>
+			 	<td style="border: 1px solid black; padding: 5px">&#36;<%= rIncome.rincome %></td>
+			 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 275px;"><%= link_to "Edit Real Income Entry", edit_user_dashboard_rincome_path(@user, @dashboard, rIncome), method: :get %></td>
+			 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 300px;"><%= link_to "Delete Real Income Entry", user_dashboard_rincome_path(@user, @dashboard, rIncome), method: :delete %></td>
+				</tr>
+			<% end %>
+		<% end %>
+		<tr style="text-align: center;">
+			<td></td>
+			<td style="border: 1px solid black; padding: 5px">Real Income Sum</td>
+			<td style="border: 1px solid black; padding: 5px">&#36;<%= @dashboard.rincomesum %></td>
+		</tr>
+	</tbody>
+</table>

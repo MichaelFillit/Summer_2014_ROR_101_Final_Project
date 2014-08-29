@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $(function() {
+    $( "#from" ).datepicker({
+      "dateFormat": "yy-mm-dd",
+      minDate: 0,
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      "dateFormat": "yy-mm-dd",
+      minDate: "from",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+  </script>
+
+<br/>
+<% @daterange.errors.full_messages.each do |error| %>
+<%= error %>
+<br/>
+<% end %>
+
+<%= render "partials/dashboardlink" %>
+
+<%= form_for [@user, @dashboard, @daterange] do |f| %>
+ 
+ <%=f.label :Date_From %>
+ <%=f.text_field :datefrom, :id => 'from' %>
+ <br/>  
+ <%=f.label :Date_To %>
+ <%=f.text_field :dateto, :id => 'to' %>
+ 
+<br/>
+<br/>
+ <%=f.submit :create %>
+ <br/>
+ <br/>
+ <% end %>

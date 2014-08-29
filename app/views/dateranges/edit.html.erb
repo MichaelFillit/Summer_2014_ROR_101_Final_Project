@@ -1,0 +1,25 @@
+<br/>
+<% @eCost.errors.full_messages.each do |error| %>
+<%= error %>
+<% end %>
+
+<%= render "partials/dashboardlink" %>
+
+<%= form_for [@user, @dashboard, @daterange] do |f| %>
+
+ <%=f.label :Year_From %>
+ <%=f.text_field :year %>  
+ <%=f.label :Month_From %>
+ <%=f.text_field :month %>
+ <%=f.label :Day_From %>
+ <%=f.text_field :day %>
+<%=f.label :Year_To %>
+ <%=f.text_field :yearto %>  
+ <%=f.label :Month_To %>
+ <%=f.text_field :monthto %>
+ <%=f.label :Day_To %>
+ <%=f.text_field :dayto %>
+
+ <%=f.submit :create %>
+ 
+<% end %>

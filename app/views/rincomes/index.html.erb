@@ -1,0 +1,23 @@
+<%= render "partials/dashboardlink" %>
+
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/rincomes/new"> Create A Real Income Entry</a>
+<br/>
+<hr>
+<table>
+	<tr>
+		<th style="border: 1px solid black;">Real Income Entry Title</th>
+		<th style="border: 1px solid black;">Real Income Entry Value</th>
+	</tr>
+<% @rincomes.each do |rIncome| %>
+<tr style="text-align: center;">
+	<td style="border: 1px solid black;"><%= rIncome.title %></td>
+ 	<td style="border: 1px solid black;">&#36;<%= rIncome.rincome %></td>
+ 	<td style="border: 1px solid black;"><a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/rincomes/<%= rIncome.id %>/edit">Edit Real Income Entry</a></td>
+ 	<td style="border: 1px solid black;"><%= link_to "Delete Real Income Entry", user_dashboard_rincome_path(@user.id, @dashboard.id, rIncome.id), method: :delete %></td>
+</tr>
+<% end %>
+<tr style="text-align: center;">
+	<td style="border-bottom: 1px solid black;">Real Income Sum</td>
+	<td style="border-bottom: 1px solid black;"><%= @rIncomesSum %></td>
+</tr>
+</table>

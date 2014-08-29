@@ -1,0 +1,26 @@
+<a href="/users/<%= @user.id %>/dashboards"> Show Dashboards</a>
+<br/>
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>"> Show this Dashboard</a>
+<br/>
+<br/>
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/ecosts/new"> Create A Expected Cost Entry</a>
+<br/>
+<hr>
+<table>
+	<tr>
+		<th style="border: 1px solid black;">Expected Cost Entry Title</th>
+		<th style="border: 1px solid black;">Expected Cost Entry Value</th>
+	</tr>
+<% @eCosts.each do |eCost| %>
+<tr style="text-align: center;">
+	<td style="border: 1px solid black;"><%= eCost.title %></td>
+ 	<td style="border: 1px solid black;"><%= eCost.ecost %></td>
+ 	<td style="border: 1px solid black;"><a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/ecosts/<%= eCost.id %>/edit">Edit Expected Cost Entry</a></td>
+ 	<td style="border: 1px solid black;"><%= link_to "Delete Expected Cost Entry", user_dashboard_ecost_path(@user.id, @dashboard.id, eCost.id), method: :delete %></td>
+</tr>
+<% end %>
+<tr style="text-align: center;">
+	<td style="border-bottom: 1px solid black;">Expected cost Sum</td>
+	<td style="border-bottom: 1px solid black;"><%= @eCostsSum %></td>
+</tr>
+</table>

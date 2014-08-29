@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+    	"dateFormat": "yy-mm-dd", minDate: 0, numberOfMonths: 3
+    });
+  });
+  </script>
+<br/>
+<% @eIncome.errors.full_messages.each do |error| %>
+<%= error %>
+<br/>
+<% end %>
+
+<%= render "partials/dashboardlink" %>
+
+<%= form_for [@user, @dashboard, @eIncome] do |f| %>
+
+ <%=f.label :Date %>
+ <%=f.text_field :date, :id => 'datepicker' %>	
+ <%=f.label :Title %>
+ <%=f.text_field :title %>
+ <%=f.label :Expected_Income_Value %>
+ <%=f.text_field :eincome %>
+
+ <%=f.submit :create %>
+ 
+<% end %>

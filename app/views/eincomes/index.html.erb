@@ -1,0 +1,26 @@
+<a href="/users/<%= @user.id %>/dashboards"> Show Dashboards</a>
+<br/>
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>"> Show this Dashboard</a>
+<br/>
+<br/>
+<a href="/eincomes/new"> Create A Expected Income Entry</a>
+<br/>
+<hr>
+<table>
+	<tr>
+		<th style="border: 1px solid black;">Expected Income Entry Title</th>
+		<th style="border: 1px solid black;">Expected Income Entry Value</th>
+	</tr>
+<% @eIncomes.each do |eIncome| %>
+<tr style="text-align: center;">
+	<td style="border: 1px solid black;"><%= eIncome.title %></td>
+ 	<td style="border: 1px solid black;"><%= eIncome.eincome %></td>
+ 	<td style="border: 1px solid black;"><a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/eincomes/<%= eIncome.id %>/edit">Edit Expected Income Entry</a></td>
+ 	<td style="border: 1px solid black;"><%= link_to "Delete Expected Income Entry", user_dashboard_eincome_path(@user.id, @dashboard.id, eIncome.id), method: :delete %></td>
+</tr>
+<% end %>
+<tr style="text-align: center;">
+	<td style="border-bottom: 1px solid black;">Expected Income Sum</td>
+	<td style="border-bottom: 1px solid black;"><%= @eIncomesSum %></td>
+</tr>
+</table>

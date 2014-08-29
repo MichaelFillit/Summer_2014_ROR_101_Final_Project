@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+  </script>
+<br/>
+<%= link_to "Create A Expected Cost Entry", new_user_dashboard_ecost_path(@user, @dashboard), method: :get %>
+<br/>
+<br/>
+<hr>
+<table>
+	<thead>
+		<tr>
+			<th style="border: 1px solid black; padding: 5px; text-align: center; width: 275px;">Expected Cost Entry Date</th>
+			<th style="border: 1px solid black; vertical-align: text-top; text-align: center; padding: 5px; width: 350px;">Expected Cost Entry Title</th>
+			<th style="border: 1px solid black; padding: 5px; width: 300px; text-align: center;">Expected Cost Entry Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @dashboard.ecosts_not_zero.each do |eCost| %>
+			<% if eCost.date >= @dashboard.df && eCost.date <= @dashboard.dt %>
+				<tr style="text-align: center; background-color: grey; padding: 5px;">
+					<td style="border: 1px solid black; padding: 5px;"><%= eCost.date.strftime("%a, %B %d, %Y") %></td>
+					<td style="border: 1px solid black; word-wrap:break-word; padding: 5px;"><%= eCost.title %></td>
+				 	<td style="border: 1px solid black; padding: 5px;">&#36;<%= eCost.ecost %></td>
+				 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 275px;"><%= link_to "Edit Expected Cost Entry", edit_user_dashboard_ecost_path(@user, @dashboard, eCost), method: :get %></td>
+				 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 300px;"><%= link_to "Delete Expected Cost Entry", user_dashboard_ecost_path(@user, @dashboard, eCost), method: :delete %></td>
+				</tr>
+			<% else %>
+				<tr style="text-align: center;">
+					<td style="border: 1px solid black; padding: 5px;"><%= eCost.date.strftime("%a, %B %d, %Y") %></td>
+					<td style="border: 1px solid black; word-wrap:break-word; padding: 5px;"><%= eCost.title %></td>
+				 	<td style="border: 1px solid black; padding: 5px;">&#36;<%= eCost.ecost %></td>
+				 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 275px;"><%= link_to "Edit Expected Cost Entry", edit_user_dashboard_ecost_path(@user, @dashboard, eCost), method: :get %></td>
+				 	<td style="border: 1px solid black; padding: 5px; font-size: 15px; width: 300px;"><%= link_to "Delete Expected Cost Entry", user_dashboard_ecost_path(@user, @dashboard, eCost), method: :delete %></td>
+				</tr>
+			<% end %>
+		<% end %>
+		<tr style="text-align: center;">
+			<td></td>
+			<td style="border: 1px solid black; padding: 5px;">Expected Cost Sum</td>
+			<td style="border: 1px solid black; padding: 5px;">&#36;<%= @dashboard.ecostsum %></td>
+		</tr>
+	</tbody>
+</table>

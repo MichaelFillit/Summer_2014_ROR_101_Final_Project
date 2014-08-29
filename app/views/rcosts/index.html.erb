@@ -1,0 +1,26 @@
+<a href="/users/<%= @user.id %>/dashboards"> Show Dashboards</a>
+<br/>
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>"> Show this Dashboard</a>
+<br/>
+<br/>
+<a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/rcosts/new"> Create A Real Cost Entry</a>
+<br/>
+<hr>
+<table>
+	<tr>
+		<th style="border: 1px solid black;">Real Cost Entry Title</th>
+		<th style="border: 1px solid black;">Real Cost Entry Value</th>
+	</tr>
+<% @rCosts.each do |rCost| %>
+<tr style="text-align: center;">
+	<td style="border: 1px solid black;"><%= rCost.title %></td>
+ 	<td style="border: 1px solid black;"><%= rCost.rcost %></td>
+ 	<td style="border: 1px solid black;"><a href="/users/<%= @user.id %>/dashboards/<%= @dashboard.id %>/rCosts/<%= rCost.id %>/edit">Edit Real Cost Entry</a></td>
+ 	<td style="border: 1px solid black;"><%= link_to "Delete Real Cost Entry", user_dashboard_rCost_path(@user.id, @dashboard.id, rCost.id), method: :delete %></td>
+</tr>
+<% end %>
+<tr style="text-align: center;">
+	<td style="border-bottom: 1px solid black;">Real Cost Sum</td>
+	<td style="border-bottom: 1px solid black;"><%= @rCostsSum %></td>
+</tr>
+</table>
