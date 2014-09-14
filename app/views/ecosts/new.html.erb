@@ -16,15 +16,14 @@
 
 <%= render "partials/dashboardlink" %>
 
-<%= form_for [@user, @dashboard, @eCost] do |f| %>
-
- <%=f.label :Date %>
- <%=f.text_field :date, :id => 'datepicker' %>	
- <%=f.label :Title %>
- <%=f.text_field :title %>
- <%=f.label :Expected_Cost_Value %>
- <%=f.text_field :ecost %>
-
- <%=f.submit :create %>
- 
-<% end %>
+<div style="margin-left: 15px;">
+	<%= form_for [@user, @dashboard, @eCost] do |f| %>
+	<%=f.label :Date %>
+	<%=f.text_field :date, :id => 'datepicker' %>	
+	<%=f.label :Title %>
+	<%=f.text_field :title %>
+	<%=f.label :Expected_Cost_Value %>
+	<%=f.text_field :ecost %>
+	<%=f.submit :create %> 
+	<% end %>
+</div>

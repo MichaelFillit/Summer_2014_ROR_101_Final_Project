@@ -9,7 +9,7 @@
 
 <%= render "partials/dashboardlink" %>
 
-	<table class="table table-striped">
+	<table class="table table-striped" style="margin-left: 15px;">
 		<thead>
 			<tr>
 			<th style="border: 1px solid black; text-align: center; width: 250px;">Dashboard Title</th>
@@ -25,12 +25,14 @@
 		</tbody>
 	</table>
 
-<%= form_for [@user, @dashboard] do |f| %>
+<div style="margin-left: 15px;">
+	<%= form_for [@user, @dashboard] do |f| %>
 
- <%=f.label :title %>
- <%=f.text_field :title %>
- <%=f.label :Account_Balance %>
- <%=f.text_field :balance %>
+	<%=f.label :title %>
+	<%=f.text_field :title %>
+	<%=f.label :Account_Balance %>
+	<%=f.text_field :balance %>
 
- <%=f.submit :"Submit Edit" %>
-<% end %>
+	<%=f.submit :"Submit Edit" %>
+	<% end %>
+</div>

@@ -1,9 +1,24 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script>
+  <script>
   $(function() {
-    $( "#accordion" ).accordion();
+    $( "#accordion" )
+      .accordion({
+        header: "> div > h3"
+      })
+      .sortable({
+        axis: "y",
+        handle: "h3",
+        stop: function( event, ui ) {
+          // IE doesn't register the blur when sorting
+          // so trigger focusout handlers to remove .ui-state-focus
+          ui.item.children( "h3" ).triggerHandler( "focusout" );
+ 
+          // Refresh accordion to handle new order
+          $( this ).accordion( "refresh" );
+        }
+      });
   });
   </script>
   <script>
@@ -23,9 +38,11 @@
 <br/>
 <div id="accordion">
   <% @dashboard.each do |dash| %>
-  <h3><u>Dashboard Title</u>: <%= dash.title %> -- -- <%= link_to "Show This Dashboard", user_dashboard_path(@user, dash), method: :get %> / <%= link_to "Edit Dashboard", edit_user_dashboard_path(@user, dash), method: :get %> / <%= link_to "Delete Dashboard", user_dashboard_path(@user, dash), method: :delete %></h3>
-  <div>
-  	<u>Dashboard Starting Balance</u>: &#36;<%= dash.balance %>
+  <div class="group">
+    <h3><u>Dashboard Title</u>: <%= dash.title %> -- -- <%= link_to "Show This Dashboard", user_dashboard_path(@user, dash), method: :get %> / <%= link_to "Edit Dashboard", edit_user_dashboard_path(@user, dash), method: :get %> / <%= link_to "Delete Dashboard", user_dashboard_path(@user, dash), method: :delete %></h3>
+    <div>
+    	<u>Dashboard Starting Balance</u>: &#36;<%= dash.balance %>
+    </div>
   </div>
   <% end %>
 </div>

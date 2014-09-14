@@ -18,13 +18,15 @@
 
 <%= render "partials/dashboardlink" %>
 
-<%= form_for [@user, @dashboard, @rIncome] do |f| %>
- <%=f.label :Date %>
- <%=f.text_field :date, :id => 'datepicker' %>	
- <%=f.label :Title %>
- <%=f.text_field :title %>
- <%=f.label :Real_Income_Value %>
- <%=f.text_field :rincome %>
+<div style="margin-left: 15px;">
+  <%= form_for [@user, @dashboard, @rIncome] do |f| %>
+  <%=f.label :Date %>
+  <%=f.text_field :date, :id => 'datepicker' %>	
+  <%=f.label :Title %>
+  <%=f.text_field :title %>
+  <%=f.label :Real_Income_Value %>
+  <%=f.text_field :rincome %>
 
- <%=f.submit :create %>
-<% end %>
+  <%=f.submit :create %>
+  <% end %>
+</div>

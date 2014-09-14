@@ -33,17 +33,17 @@
 
 <%= render "partials/dashboardlink" %>
 
-<%= form_for [@user, @dashboard, @daterange] do |f| %>
- 
- <%=f.label :Date_From %>
- <%=f.text_field :datefrom, :id => 'from' %>
- <br/>  
- <%=f.label :Date_To %>
- <%=f.text_field :dateto, :id => 'to' %>
- 
-<br/>
-<br/>
- <%=f.submit :create %>
- <br/>
- <br/>
- <% end %>
+<div style="margin-left: 15px;">
+  <%= form_for [@user, @dashboard, @daterange] do |f| %>
+  <%=f.label :Date_From %>
+  <%=f.text_field :datefrom, :id => 'from' %>
+  <br/>  
+  <%=f.label :Date_To %>
+  <%=f.text_field :dateto, :id => 'to' %>
+  <br/>
+  <br/>
+  <%=f.submit :create %>
+  <br/>
+  <br/>
+  <% end %>
+</div>

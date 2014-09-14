@@ -5,18 +5,20 @@
 <% end %>
 
 <br/>
-	<br/>
+<br/>
+<div style="margin-left: 15px;">
 	 <%= link_to "Show Dashboards", user_dashboards_path(@user.id), method: :get %>
 	<br/>
 	<br/>
 
-<%= form_for [@user, @dashboard] do |f| %>
+	<%= form_for [@user, @dashboard] do |f| %>
 
- <%=f.label :Title %>
- <%=f.text_field :title %>	
- <%=f.label :Account_Balance %>
- <%=f.text_field :balance %>
+	<%=f.label :Title %>
+	<%=f.text_field :title %>	
+	<%=f.label :Account_Balance %>
+	<%=f.text_field :balance %>
 
- <%=f.submit :create %>
- 
-<% end %>
+	<%=f.submit :create %>
+
+	<% end %>
+</div>

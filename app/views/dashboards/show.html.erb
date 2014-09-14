@@ -18,12 +18,13 @@
   </script>
 <br/>
 <br/>
+<div style="margin-left: 15px;">
 <%= link_to "Show Dashboards", user_dashboards_path(@user), method: :get %>
 <br/>
-<br/>
-	<h3><u>Dashboard Starting Balance</u>: <small>&#36;<%= @dashboard.balance %> -- <%= link_to "Edit Dashboard", edit_user_dashboard_path(@user, @dashboard), method: :get %></small></h3>
-<br/>
-<div id="tabs">
+  <h3><u>Dashboard Title</u>: <i><%= @dashboard.title %></i></h3>
+	<h3><u>Dashboard Starting Balance</u>: <i>&#36;<%= @dashboard.balance %></i> -- <small><%= link_to "Edit Dashboard", edit_user_dashboard_path(@user, @dashboard), method: :get %></small></h3>
+</div>
+<div id="tabs" style="margin-left: 5px; margin-right: 5px;">
   <ul>
     <li><a href="#tabs-1">Real Incomes</a></li>
     <li><a href="#tabs-2">Real Costs</a></li>
@@ -44,64 +45,66 @@
   </div>
 </div>
 <br/>
-<table class="table table-striped" style="width: auto;">
-  <thead>
-    <tr>
-      <th style="border: 1px solid black;">Dashboard Starting Balance</th>
-      <th style="border: 1px solid black;">Total Real Income</th>
-      <th style="border: 1px solid black;">Total Real Cost</th>
-      <th style="border: 1px solid black;">Real Value</th>
-    <tr>
-  </thead>
-  <tbody>
-    <tr style="text-align: center;" style="width: auto;">
-      <td style="border: 1px solid black;">&#36;<%= @dashboard.balance %></td>
-      <td style="border: 1px solid black;">&#36;<%= @dashboard.rincomesum %></td>
-      <td style="border: 1px solid black;">&#36;<%= @dashboard.rcostsum %></td>
-      <% if @dashboard.realvalue > 0 %>
-        <td style="border: 1px solid black; background-color: lime">&#36;<%= @dashboard.realvalue %></td>
-        <% elsif @dashboard.realvalue == 0 %>
-        <td style="border: 1px solid black;">&#36;<%= @dashboard.realvalue %></td>
-        <% else %>
-        <td style="border: 1px solid black; background-color: red">&#36;<%= @dashboard.realvalue %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
-<table class="table table-striped" style="width: auto;">
-  <thead>
-    <tr>
-      <th style="border: 1px solid black;">Total Expected Income</th>
-      <th style="border: 1px solid black;">Total Expected Cost</th>
-      <th style="border: 1px solid black;">Expected Real Value</th>
-    <tr>
-  </thead>
-  <tbody>
-    <tr style="text-align: center;">
-      <td style="border: 1px solid black;">&#36;<%= @dashboard.tei %></td>
-      <td style="border: 1px solid black;">&#36;<%= @dashboard.tec %></td>
-      <% if @dashboard.exprealvalue > 0 %>
-        <td style="border: 1px solid black; background-color: lime">&#36;<%= @dashboard.exprealvalue %></td>
-        <% elsif @dashboard.exprealvalue == 0 %>
-        <td style="border: 1px solid black;">&#36;<%= @dashboard.exprealvalue %></td>
-        <% else %>
-        <td style="border: 1px solid black; background-color: red">&#36;<%= @dashboard.exprealvalue %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
-<br/>
-<hr>
-<%= link_to "Create A Date Range (YYYY/MM/DD)", new_user_dashboard_daterange_path(@user, @dashboard), method: :get %>
-<br/>
-<h3><u>Current Range</u> - <small>highlighted above in grey</small>
-<br/>
-<br/>
-From: <%= @dashboard.df.strftime("%A, %B %d, %Y") %>
-<br/>
-To: <%= @dashboard.dt.strftime("%A, %B %d, %Y") %></h3>
-<br/>
-
+<div style="float: left; padding: 10px;">
+  <table class="table table-striped" style="width: auto;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid black;">Dashboard Starting Balance</th>
+        <th style="border: 1px solid black;">Total Real Income</th>
+        <th style="border: 1px solid black;">Total Real Cost</th>
+        <th style="border: 1px solid black;">Real Value</th>
+      <tr>
+    </thead>
+    <tbody>
+      <tr style="text-align: center;" style="width: auto;">
+        <td style="border: 1px solid black;">&#36;<%= @dashboard.balance %></td>
+        <td style="border: 1px solid black;">&#36;<%= @dashboard.rincomesum %></td>
+        <td style="border: 1px solid black;">&#36;<%= @dashboard.rcostsum %></td>
+        <% if @dashboard.realvalue > 0 %>
+          <td style="border: 1px solid black; background-color: lime">&#36;<%= @dashboard.realvalue %></td>
+          <% elsif @dashboard.realvalue == 0 %>
+          <td style="border: 1px solid black;">&#36;<%= @dashboard.realvalue %></td>
+          <% else %>
+          <td style="border: 1px solid black; background-color: red">&#36;<%= @dashboard.realvalue %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-striped" style="width: auto;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid black;">Total Expected Income</th>
+        <th style="border: 1px solid black;">Total Expected Cost</th>
+        <th style="border: 1px solid black;">Expected Real Value</th>
+      <tr>
+    </thead>
+    <tbody>
+      <tr style="text-align: center;">
+        <td style="border: 1px solid black;">&#36;<%= @dashboard.tei %></td>
+        <td style="border: 1px solid black;">&#36;<%= @dashboard.tec %></td>
+        <% if @dashboard.exprealvalue > 0 %>
+          <td style="border: 1px solid black; background-color: lime">&#36;<%= @dashboard.exprealvalue %></td>
+          <% elsif @dashboard.exprealvalue == 0 %>
+          <td style="border: 1px solid black;">&#36;<%= @dashboard.exprealvalue %></td>
+          <% else %>
+          <td style="border: 1px solid black; background-color: red">&#36;<%= @dashboard.exprealvalue %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="float: right; border-left: 2px solid black; padding: 10px;">
+  <%= link_to "Create A Date Range (YYYY/MM/DD)", new_user_dashboard_daterange_path(@user, @dashboard), method: :get %>
+  <br/>
+  <h3>
+    <u>Current Range</u> - <small>highlighted above in grey</small>
+    <br/>
+    <br/>
+    From: <i><%= @dashboard.df.strftime("%A, %B %d, %Y") %></i>
+    <br/>
+    To: <i><%= @dashboard.dt.strftime("%A, %B %d, %Y") %></i>
+  </h3>
+  <br/>
   <table class="table table-striped" style="width: auto;">
     <thead>
       <tr>
@@ -126,7 +129,7 @@ To: <%= @dashboard.dt.strftime("%A, %B %d, %Y") %></h3>
       </tr>
     </tbody>
   </table>
-  <table class="table table-striped" style="width: auto;">
+  <table class="table table-striped" style="width: auto; float: right;">
     <thead>
       <tr>
         <th style="border: 1px solid black; padding: 5px;">Range Starting Expected Balance</th>
@@ -150,7 +153,10 @@ To: <%= @dashboard.dt.strftime("%A, %B %d, %Y") %></h3>
       </tr>
     </tbody>
   </table>
+</div>
 <br/>
 <br/>
 <br/>
+<div style="clear: both;">
 <%= link_to "Log_Out", log_out_path, method: :delete %>
+</div>

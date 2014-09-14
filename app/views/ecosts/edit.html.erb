@@ -16,7 +16,7 @@
 
 <%= render "partials/dashboardlink" %>
 
-	<table class="table table-striped">
+	<table class="table table-striped" style="margin-left: 15px;">
 		<thead>
 			<tr>
 			<th style="border: 1px solid black; text-align: center; width: 275px;">Expected Cost Entry Date</th>
@@ -33,14 +33,16 @@
 			</tr>
 		</tbody>
 	</table>
-<%= form_for [@user, @dashboard, @eCost] do |f| %>
+<div style="margin-left: 15px;">
+	<%= form_for [@user, @dashboard, @eCost] do |f| %>
 
- <%=f.label :Date %>
- <%=f.text_field :date, :id => 'datepicker' %>	
- <%=f.label :Title %>
- <%=f.text_field :title %>
- <%=f.label :Expected_Cost_Value %>
- <%=f.text_field :ecost %>
+	 <%=f.label :Date %>
+	 <%=f.text_field :date, :id => 'datepicker' %>	
+	 <%=f.label :Title %>
+	 <%=f.text_field :title %>
+	 <%=f.label :Expected_Cost_Value %>
+	 <%=f.text_field :ecost %>
 
- <%=f.submit :"Submit Edit" %>
-<% end %>
+	 <%=f.submit :"Submit Edit" %>
+	<% end %>
+</div>

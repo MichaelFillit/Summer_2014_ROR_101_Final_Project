@@ -16,7 +16,7 @@
 
 <%= render "partials/dashboardlink" %>
 
-	<table class="table table-striped">
+	<table class="table table-striped" style="margin-left: 15px;">
 		<thead>
 			<tr>
 			<th style="border: 1px solid black; text-align: center; width: 275px;">Real Income Entry Date</th>
@@ -33,14 +33,16 @@
 			</tr>
 		</tbody>
 	</table>
-<%= form_for [@user, @dashboard, @rIncome] do |f| %>
+<div style="margin-left: 15px;">
+	<%= form_for [@user, @dashboard, @rIncome] do |f| %>
 
- <%=f.label :Date %>
- <%=f.text_field :date, :id => 'datepicker' %>	
- <%=f.label :Title %>
- <%=f.text_field :title %>
- <%=f.label :Real_Income_Value %>
- <%=f.text_field :rincome %>
+	 <%=f.label :Date %>
+	 <%=f.text_field :date, :id => 'datepicker' %>	
+	 <%=f.label :Title %>
+	 <%=f.text_field :title %>
+	 <%=f.label :Real_Income_Value %>
+	 <%=f.text_field :rincome %>
 
- <%=f.submit :"Submit Edit" %>
-<% end %>
+	 <%=f.submit :"Submit Edit" %>
+	<% end %>
+</div>
