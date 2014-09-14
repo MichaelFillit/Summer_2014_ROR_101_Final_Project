@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828132509) do
+ActiveRecord::Schema.define(version: 20140904045157) do
 
   create_table "dashboards", force: true do |t|
     t.string   "title"
